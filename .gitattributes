@@ -1,0 +1,23 @@
+
+# $ git add .
+# warning: in the working copy of 'gcc/private_key.pem', LF will be replaced by CRLF the next time Git touches it
+# warning: in the working copy of 'gcc/public_key.pem', LF will be replaced by CRLF the next time Git touches it
+
+# What It Means:
+# LF (Line Feed): The newline character used in Unix/Linux systems (\n).
+# CRLF (Carriage Return Line Feed): The newline character used in Windows systems (\r\n).
+# Git is warning you that the line endings in your working copy of the files gcc/private_key.pem and gcc/public_key.pem will change from LF to CRLF the next time Git processes them. 
+# This change is due to Git's automatic line ending conversion settings.
+
+# How to Resolve the Warning
+
+# 1. Use a .gitattributes File
+*.pem -text
+# gcc/private_key.pem -text
+# gcc/public_key.pem -text
+
+# 2. Update Your Git Configuration
+# git config --global core.autocrlf false
+# git config --global --edit
+# git config core.autocrlf false
+# git config --edit

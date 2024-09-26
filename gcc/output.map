@@ -1,0 +1,477 @@
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD main.elf-startup.o
+LOAD main.elf-main.o
+LOAD main.elf-syscalls.o
+LOAD main.elf-sw_info.o
+START GROUP
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m/nofp\libgcc.a
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m/nofp\libg.a
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m/nofp\libc.a
+END GROUP
+START GROUP
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m/nofp\libgcc.a
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m/nofp\libc.a
+LOAD C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/13.3 rel1/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m/nofp\libnosys.a
+END GROUP
+                [!provide]                        PROVIDE (__executable_start = SEGMENT_START ("text-segment", 0x8000))
+                0x00008000                        . = SEGMENT_START ("text-segment", 0x8000)
+
+.interp
+ *(.interp)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash
+ *(.hash)
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.dyn        0x00008000        0x0
+ *(.rel.init)
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+ *(.rel.fini)
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+ *(.rel.data.rel.ro .rel.data.rel.ro.* .rel.gnu.linkonce.d.rel.ro.*)
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+ *(.rel.ctors)
+ *(.rel.dtors)
+ *(.rel.got)
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+                [!provide]                        PROVIDE (__rel_iplt_start = .)
+ *(.rel.iplt)
+ .rel.iplt      0x00008000        0x0 main.elf-startup.o
+                [!provide]                        PROVIDE (__rel_iplt_end = .)
+
+.rela.dyn       0x00008000        0x0
+ *(.rela.init)
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+ *(.rela.fini)
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+ *(.rela.ctors)
+ *(.rela.dtors)
+ *(.rela.got)
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+                [!provide]                        PROVIDE (__rela_iplt_start = .)
+ *(.rela.iplt)
+                [!provide]                        PROVIDE (__rela_iplt_end = .)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.init
+ *(SORT_NONE(.init))
+
+.plt
+ *(.plt)
+
+.iplt           0x00008000        0x0
+ *(.iplt)
+ .iplt          0x00008000        0x0 main.elf-startup.o
+
+.gnu.sgstubs
+ *(.gnu.sgstubs*)
+
+.text           0x00008000      0x1ba
+ *(.text.unlikely .text.*_unlikely .text.unlikely.*)
+ *(.text.exit .text.exit.*)
+ *(.text.startup .text.startup.*)
+ *(.text.hot .text.hot.*)
+ *(SORT_BY_NAME(.text.sorted.*))
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x00008000       0x64 main.elf-startup.o
+                0x00008000                Reset_Handler
+                0x0000805c                NMI_Handler
+                0x0000805c                Default_Handler
+                0x0000805c                HardFault_Handler
+ .text          0x00008064       0x80 main.elf-main.o
+                0x00008064                delay
+                0x00008084                main
+ .text          0x000080e4       0xd6 main.elf-syscalls.o
+                0x000080e4                _exit
+                0x000080ee                _close
+                0x00008104                _fstat
+                0x00008122                _isatty
+                0x00008136                _lseek
+                0x0000814e                _read
+                0x00008166                _write
+                0x0000817e                _sbrk
+                0x00008194                _kill
+                0x000081ac                _getpid
+ .text          0x000081ba        0x0 main.elf-sw_info.o
+ *(.gnu.warning)
+ *(.glue_7t)
+ .glue_7t       0x000081ba        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x000081ba        0x0 linker stubs
+ *(.vfp11_veneer)
+ .vfp11_veneer  0x000081ba        0x0 linker stubs
+ *(.v4_bx)
+ .v4_bx         0x000081ba        0x0 linker stubs
+
+.fini
+ *(SORT_NONE(.fini))
+                [!provide]                        PROVIDE (__etext = .)
+                [!provide]                        PROVIDE (_etext = .)
+                [!provide]                        PROVIDE (etext = .)
+
+.rodata
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+
+.sw_info        0x000081bc       0x10
+ .sw_info       0x000081bc       0x10 main.elf-sw_info.o
+                0x000081bc                id
+
+.rodata1
+ *(.rodata1)
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+
+.ARM.exidx      0x000081cc        0x0
+                [!provide]                        PROVIDE (__exidx_start = .)
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                [!provide]                        PROVIDE (__exidx_end = .)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+ *(.eh_frame_entry .eh_frame_entry.*)
+
+.eh_frame
+ *(.eh_frame)
+ *(.eh_frame.*)
+
+.sframe
+ *(.sframe)
+ *(.sframe.*)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.gnu_extab
+ *(.gnu_extab*)
+
+.exception_ranges
+ *(.exception_ranges*)
+                0x000091cc                        . = (ALIGN (CONSTANT (MAXPAGESIZE)) + (. & (CONSTANT (MAXPAGESIZE) - 0x1)))
+
+.eh_frame
+ *(.eh_frame)
+ *(.eh_frame.*)
+
+.sframe
+ *(.sframe)
+ *(.sframe.*)
+
+.gnu_extab
+ *(.gnu_extab)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.exception_ranges
+ *(.exception_ranges*)
+
+.tdata          0x000091cc        0x0
+                [!provide]                        PROVIDE (__tdata_start = .)
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array  0x000091cc        0x0
+                [!provide]                        PROVIDE (__preinit_array_start = .)
+ *(.preinit_array)
+                [!provide]                        PROVIDE (__preinit_array_end = .)
+
+.init_array     0x000091cc        0x0
+                [!provide]                        PROVIDE (__init_array_start = .)
+ *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
+ *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
+                [!provide]                        PROVIDE (__init_array_end = .)
+
+.fini_array     0x000091cc        0x0
+                [!provide]                        PROVIDE (__fini_array_start = .)
+ *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
+ *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
+                [!provide]                        PROVIDE (__fini_array_end = .)
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT_BY_NAME(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT_BY_NAME(.dtors.*))
+ *(.dtors)
+
+.jcr
+ *(.jcr)
+
+.data.rel.ro
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro .data.rel.ro.* .gnu.linkonce.d.rel.ro.*)
+
+.dynamic
+ *(.dynamic)
+
+.got            0x000091cc        0x0
+ *(.got.plt)
+ *(.igot.plt)
+ .igot.plt      0x000091cc        0x0 main.elf-startup.o
+ *(.got)
+ *(.igot)
+
+.data           0x000091cc        0x0
+                0x000091cc                        __data_start = .
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x000091cc        0x0 main.elf-startup.o
+ .data          0x000091cc        0x0 main.elf-main.o
+ .data          0x000091cc        0x0 main.elf-syscalls.o
+ .data          0x000091cc        0x0 main.elf-sw_info.o
+
+.isr_vector     0x000091cc       0x10
+ .isr_vector    0x000091cc       0x10 main.elf-startup.o
+                0x000091cc                isr_vectors
+
+.data1
+ *(.data1)
+                0x000091dc                        _edata = .
+                [!provide]                        PROVIDE (edata = .)
+
+.persistent     0x000091dc        0x0
+                [!provide]                        PROVIDE (__persistent_start = .)
+ *(.persistent .persistent.* .gnu.linkonce.p.*)
+                0x000091dc                        . = ALIGN (0x4)
+                [!provide]                        PROVIDE (__persistent_end = .)
+                0x000091dc                        . = ALIGN (ALIGNOF (NEXT_SECTION))
+                0x000091dc                        __bss_start = .
+                0x000091dc                        __bss_start__ = .
+
+.bss            0x000091dc        0x0
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x000091dc        0x0 main.elf-startup.o
+ .bss           0x000091dc        0x0 main.elf-main.o
+ .bss           0x000091dc        0x0 main.elf-syscalls.o
+ .bss           0x000091dc        0x0 main.elf-sw_info.o
+ *(COMMON)
+                0x000091dc                        . = ALIGN ((. != 0x0)?0x4:0x1)
+                0x000091dc                        _bss_end__ = .
+                0x000091dc                        __bss_end__ = .
+
+.noinit         0x000091dc        0x0
+                [!provide]                        PROVIDE (__noinit_start = .)
+ *(.noinit .noinit.* .gnu.linkonce.n.*)
+                0x000091dc                        . = ALIGN (0x4)
+                [!provide]                        PROVIDE (__noinit_end = .)
+                0x000091dc                        . = ALIGN (0x4)
+                0x000091dc                        . = SEGMENT_START ("ldata-segment", .)
+                0x000091dc                        . = ALIGN (0x4)
+                0x000091dc                        __end__ = .
+                0x000091dc                        _end = .
+                [!provide]                        PROVIDE (end = .)
+
+.stack          0x00080000        0x0
+                0x00080000                        _stack = .
+ *(.stack)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x00000000       0x45
+ *(.comment)
+ .comment       0x00000000       0x45 main.elf-startup.o
+                                 0x46 (size before relaxing)
+ .comment       0x00000045       0x46 main.elf-main.o
+ .comment       0x00000045       0x46 main.elf-syscalls.o
+ .comment       0x00000045       0x46 main.elf-sw_info.o
+
+.gnu.build.attributes
+ *(.gnu.build.attributes .gnu.build.attributes.*)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0x78
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 main.elf-startup.o
+ .debug_aranges
+                0x00000020       0x20 main.elf-main.o
+ .debug_aranges
+                0x00000040       0x20 main.elf-syscalls.o
+ .debug_aranges
+                0x00000060       0x18 main.elf-sw_info.o
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x00000000      0x7be
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x00000000      0x134 main.elf-startup.o
+ .debug_info    0x00000134       0xc2 main.elf-main.o
+ .debug_info    0x000001f6      0x479 main.elf-syscalls.o
+ .debug_info    0x0000066f      0x14f main.elf-sw_info.o
+
+.debug_abbrev   0x00000000      0x2d0
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0xd6 main.elf-startup.o
+ .debug_abbrev  0x000000d6       0x85 main.elf-main.o
+ .debug_abbrev  0x0000015b       0xf1 main.elf-syscalls.o
+ .debug_abbrev  0x0000024c       0x84 main.elf-sw_info.o
+
+.debug_line     0x00000000      0x54a
+ *(.debug_line .debug_line.* .debug_line_end)
+ .debug_line    0x00000000      0x143 main.elf-startup.o
+ .debug_line    0x00000143      0x159 main.elf-main.o
+ .debug_line    0x0000029c      0x1a9 main.elf-syscalls.o
+ .debug_line    0x00000445      0x105 main.elf-sw_info.o
+
+.debug_frame    0x00000000      0x228
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x48 main.elf-startup.o
+ .debug_frame   0x00000048       0x54 main.elf-main.o
+ .debug_frame   0x0000009c      0x18c main.elf-syscalls.o
+
+.debug_str      0x00000000      0x389
+ *(.debug_str)
+ .debug_str     0x00000000      0x389 main.elf-startup.o
+                                0x181 (size before relaxing)
+ .debug_str     0x00000389      0x136 main.elf-main.o
+ .debug_str     0x00000389      0x2cf main.elf-syscalls.o
+ .debug_str     0x00000389      0x1db main.elf-sw_info.o
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges
+ *(.debug_ranges)
+
+.debug_addr
+ *(.debug_addr)
+
+.debug_line_str
+ *(.debug_line_str)
+
+.debug_loclists
+ *(.debug_loclists)
+
+.debug_macro
+ *(.debug_macro)
+
+.debug_names
+ *(.debug_names)
+
+.debug_rnglists
+ *(.debug_rnglists)
+
+.debug_str_offsets
+ *(.debug_str_offsets)
+
+.debug_sup
+ *(.debug_sup)
+
+.ARM.attributes
+                0x00000000       0x2e
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x2e main.elf-startup.o
+ .ARM.attributes
+                0x0000002e       0x2e main.elf-main.o
+ .ARM.attributes
+                0x0000005c       0x2e main.elf-syscalls.o
+ .ARM.attributes
+                0x0000008a       0x2e main.elf-sw_info.o
+ *(.gnu.attributes)
+
+.note.gnu.arm.ident
+ *(.note.gnu.arm.ident)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+ *(.gnu.lto_*)
+OUTPUT(main.elf elf32-littlearm)
+LOAD linker stubs
